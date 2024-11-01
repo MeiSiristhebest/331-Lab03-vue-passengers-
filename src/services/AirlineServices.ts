@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'https://api.instantwebtools.net/v1/passenger',
+  baseURL: 'https://api.instantwebtools.net/v1/airlines',
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -10,15 +10,7 @@ const apiClient = axios.create({
 });
 
 export default {
-  getPassengers(perPage: number, page: number) {
-    return apiClient.get(`?_limit=${perPage}&_page=${page}`).then(response => ({
-      totalPassengers: parseInt(response.headers['x-total-count'], 10),
-      totalPages: Math.ceil(parseInt(response.headers['x-total-count'], 10) / perPage),
-      data: response.data
-    }));
-  },
-
-  getPassenger(_id: string) {
+  getAirline(_id: string) {
     return apiClient.get(`/${_id}`)
       .then(response => {
         console.log('API Response:', response.data);
@@ -29,4 +21,4 @@ export default {
         throw error;
       });
   },
-};
+};;

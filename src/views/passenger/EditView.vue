@@ -11,5 +11,5 @@ const { data } = toRefs(props)
 
 </script>
 <template>
-    <p>Edit event here</p>
+    <p>Edit  here</p>
 </template>

@@ -3,21 +3,20 @@ import { toRefs } from 'vue'
 import { type Data } from '@/types'
 import { useRouter } from 'vue-router'
 const props = defineProps<{
-    event: Event
+    data: Data
     id: string
 }>()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { event } = toRefs(props)
+const { data } = toRefs(props)
 const router = useRouter()
 const register = () => {
-    // If the registration API call successful
-    // Push back to the event details view
-    router.push({ name: 'event-detail-view' })
+
+    router.push({ name: 'passenger-detail-view' })
 }
 
 </script>
 
 <template>
-    <p>Register event here</p>
+    <p>Register  here</p>
     <button @click="register">Register</button>
 </template>

@@ -1,43 +1,50 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
+import PassengerListView from '@/views/PassengerListView.vue'
 import AboutView from '@/views/AboutView.vue'
-import EventDetailView from '@/views/event/DetailView.vue'
-import EventRegisterView from '@/views/event/RegisterView.vue'
-import EventEditView from '@/views/event/EditView.vue'
-import EventLayoutView from '@/views/event/LayoutView.vue'
+import PassengerDetailView from '@/views/passenger/DetailView.vue'
+import PassengerRegisterView from '@/views/passenger/RegisterView.vue'
+import PassengerEditView from '@/views/passenger/EditView.vue'
+import PassengerLayoutView from '@/views/passenger/LayoutView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import NetworkErrorView from '@/views/NetworkErrorView.vue'
+import AirlineView from '@/views/passenger/AirlineView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'passenger',
-      component: HomeView,
+      component: PassengerListView,
       props: route => ({ page: parseInt(route.query.page?.toString() || '1') }),
     },
     {
       path: '/passenger/:id',
-      name: 'event-layout-view',
-      component: EventLayoutView,
+      name: 'passenger-layout-view',
+      component: PassengerLayoutView,
       props: true,
       children: [
         {
           path: '',
           name: 'passenger-detail-view',
-          component: EventDetailView,
+          component: PassengerDetailView,
+          props: true,
+        },
+        {
+          path: 'airline/:airlineId',
+          name: 'airline-detail-view',
+          component: AirlineView,
           props: true,
         },
         {
           path: 'register',
           name: 'passenger-register-view',
-          component: EventRegisterView,
+          component: PassengerRegisterView,
           props: true,
         },
         {
           path: 'edit',
           name: 'passenger-edit-view',
-          component: EventEditView,
+          component: PassengerEditView,
           props: true,
         },
       ],
@@ -65,5 +72,6 @@ const router = createRouter({
     },
   ],
 })
+
 
 export default router
